@@ -1,30 +1,27 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import signos from './signo.json'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import DetalhesSignos from './DetalhesSignos'
+import ListaSignos from './ListaSignos'
+import {NativeRouter as Router, Switch, Route} from 'react-router-native'
 
 export default class App extends Component {
   render() {
-    return(
-      <DetalhesSignos idSigno={1}></DetalhesSignos>
-    );
-
 
     return (
-      <View style={styles.container}>
-        {signos.map((signo,key)=>(
-          <Button key={key} title={signo.nome} onPress={()=> console.log('clicou')}></Button>
-        ))}
-      </View>
+        <Router>
+          <View style={styles.container}>
+            <Switch>
+              <Route path='/:pageId' component={DetalhesSignos}></Route>
+              <Route path='/' component={ListaSignos}></Route>
+            </Switch>
+          </View>
+        </Router>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flex: 1
+  }
 });
