@@ -4,12 +4,16 @@ import signos from './signo.json'
 import DetalhesSignos from './DetalhesSignos'
 
 export default class ListaSignos extends Component {
+
   render() {
 
     return (
-      <View style={styles.container}>
-        {signos.map((signo,key)=>(
-          <Button key={key} title={signo.nome} onPress={()=> console.log('clicou')}></Button>
+        <View style={styles.container}>
+        {signos.map((signo, key) => (
+          <Button
+            key={key}
+            title={signo.nome}
+            onPress={() => this.props.history.push('/' + key)} />
         ))}
       </View>
     );

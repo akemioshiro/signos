@@ -1,33 +1,32 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
 import signos from './signo.json'
 
-export default class App extends Component {
-    constructor(){
-        super()
-        this.state = {
-            signo:undefined
-        }
+export default class DetalheSigno extends Component {
+  constructor () {
+    super()
+    this.state = {
+      signo: undefined
     }
+  }
 
+  componentDidMount () {
+    const idSigno = parseInt(this.props.match.params.idSigno, 10)
 
-    componentDidMount(){
-        this.setState({
-            signo: signos
-            .filter((signo,key)=>this.props.idSigno===key)
-            .shift()
-        })
-    }
+    this.setState({
+      signo: signos
+        .filter((signo, key) => idSigno === key)
+        .shift()
+    })
+  }
 
+  render () {
+    const { signo } = this.state
 
-  render() {
-    const {idSigno} = this.props
-    const {signo}=this.state
-    
-    if(!signo){
-        return(
-            <View/>
-        )
+    if (!signo) {
+      return (
+        <View />
+      )
     }
 
     return (
@@ -35,9 +34,9 @@ export default class App extends Component {
         <Text style={styles.title}>{signo.nome}</Text>
         <Text style={styles.text}>{signo.caracteristica}</Text>
         <Text style={styles.date}>{signo.periodo.join(' até ')}</Text>
-        <Button title='Voltar' onPress={()=>console.log('clique aqui para voltar')}></Button>
+        <Button title='Voltar' onPress={() => this.props.history.push('/')} />
       </View>
-    );
+    )
   }
 }
 
@@ -47,18 +46,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    padding:15
+    padding: 15
   },
-  title:{
-      fontSize:30,
-      marginBottom:10,
-      fontWeight:'bold'
+  title: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginBottom: 10
   },
-  text:{
-      fontSize:25,
-      marginBottom:10
+  text: {
+    fontSize: 20,
+    marginBottom: 10
   },
-  date:{
-      fontSize:25
+  date: {
+    fontSize: 25
   }
-});
+})

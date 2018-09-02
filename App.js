@@ -11,7 +11,7 @@ export default class App extends Component {
         <Router>
           <View style={styles.container}>
             <Switch>
-              <Route path='/:pageId' component={DetalhesSignos}></Route>
+              <Route path='/:idSigno' component={DetalhesSignos}></Route>
               <Route path='/' component={ListaSignos}></Route>
             </Switch>
           </View>
